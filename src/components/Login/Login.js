@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Login = () => {
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const { logIn } = useContext(AuthContext);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -15,16 +16,16 @@ const Login = () => {
     console.log(email, password);
 
     logIn(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        setSuccess('Login Success full');
-        setError('');
+        setSuccess("Login Success full");
+        setError("");
       })
-      .catch(error => {
-        console.error('error: ', error);
+      .catch((error) => {
+        console.error("error: ", error);
         setError(error.message);
-        setSuccess('');
+        setSuccess("");
       });
   };
   return (
@@ -40,7 +41,7 @@ const Login = () => {
                 repudiandae et a id nisi.
               </p>
             </div>
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border">
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
@@ -74,8 +75,16 @@ const Login = () => {
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Login</button>
                 </div>
+                <p className="mb-2">
+                  New to site?
+                  <Link to="/register" className="link link-hover ml-2">
+                    Register Now
+                  </Link>
+                </p>
                 {error && <p className="text-red-500 text-center">{error}</p>}
-                {success && (<p className="text-center text-green-500">{success}</p>)}
+                {success && (
+                  <p className="text-center text-green-500">{success}</p>
+                )}
               </div>
             </div>
           </div>

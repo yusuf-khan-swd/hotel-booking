@@ -101,13 +101,17 @@ const Register = () => {
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Register</button>
                 </div>
+                <p className="mb-2">
+                  Already have an Account?
+                  <Link to="/login" className="link link-hover ml-2">
+                    Please Login
+                  </Link>
+                </p>
                 {error && <p className="text-red-500 text-center">{error}</p>}
                 {success && (
                   <p className="text-center">
-                    <span className="text-green-500 mr-2">
-                      {success}
-                    </span>
-                    <Link to='/login' className="link link-hover">
+                    <span className="text-green-500 mr-2">{success}</span>
+                    <Link to="/login" className="link link-hover">
                       Please Login
                     </Link>
                   </p>
