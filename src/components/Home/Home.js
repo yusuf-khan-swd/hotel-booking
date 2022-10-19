@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <h2>This is Home Component</h2>
-      <div>
+      <div className='grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
         {rooms.map(room => <Room key={room.id} room={room}></Room>)}
       </div>
     </div>
