@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Register = () => {
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const { createUser } = useContext(AuthContext);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -17,20 +17,23 @@ const Register = () => {
     console.log(name, email, password, confirm);
 
     if (password !== confirm) {
-      return setError('Password did not matched.');
+      setSuccess("");
+      return setError("Password did not matched.");
     }
 
     createUser(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        setSuccess('Register is success.')
+        setSuccess("Register is success.");
+        setError("");
+        form.reset();
       })
-      .catch(error => {
-        console.error('error: ', error);
+      .catch((error) => {
+        console.error("error: ", error);
         setError(error.message);
-      })
-
+        setSuccess("");
+      });
   };
 
   return (
@@ -99,7 +102,16 @@ const Register = () => {
                   <button className="btn btn-primary">Register</button>
                 </div>
                 {error && <p className="text-red-500 text-center">{error}</p>}
-                {success && <p className="text-green-500 text-center">{success} Please <Link>Login</Link> </p>}
+                {success && (
+                  <p className="text-center">
+                    <span className="text-green-500 mr-2">
+                      {success}
+                    </span>
+                    <Link className="link link-hover">
+                      Please Login
+                    </Link>
+                  </p>
+                )}
               </div>
             </div>
           </div>
