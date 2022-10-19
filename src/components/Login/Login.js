@@ -112,6 +112,7 @@ const Login = () => {
           </div>
         </div>
       </form>
+
       <input type="checkbox" id="modal-forgot-password" className="modal-toggle" />
       <label htmlFor="modal-forgot-password" className="modal cursor-pointer">
         <label className="modal-box relative">
