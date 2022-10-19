@@ -21,6 +21,7 @@ const UserContext = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
 
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -29,6 +30,7 @@ const UserContext = ({ children }) => {
   };
 
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
