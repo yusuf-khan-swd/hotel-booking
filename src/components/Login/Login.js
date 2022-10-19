@@ -30,6 +30,16 @@ const Login = () => {
         setSuccess("");
       });
   };
+
+  const handleForgotPassword = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    console.log(email);
+
+
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -70,7 +80,7 @@ const Login = () => {
                   />
                   <label className="label">
                     <button href="#" className="label-text-alt link link-hover">
-                      Forgot password?
+                      <label htmlFor="modal-forgot-password" className="modal-button">Forgot password?</label>
                     </button>
                   </label>
                 </div>
@@ -92,6 +102,29 @@ const Login = () => {
           </div>
         </div>
       </form>
+      <input type="checkbox" id="modal-forgot-password" className="modal-toggle" />
+      <label htmlFor="modal-forgot-password" className="modal cursor-pointer">
+        <label className="modal-box relative">
+          <h3 className="text-lg font-bold">Type Your Email !</h3>
+          <form onSubmit={handleForgotPassword}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Send</button>
+            </div>
+          </form>
+        </label>
+      </label>
     </div>
   );
 };
