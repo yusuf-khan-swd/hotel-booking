@@ -17,9 +17,18 @@ const Header = () => {
       })
   };
 
+  let showUser = "";
+
+  if (!user?.displayName) {
+    showUser = user?.email;
+  }
+  else {
+    showUser = user?.displayName;
+  }
+
   return (
     <div>
-      <Link to="/"><h2>This is Header for {user?.email}</h2></Link>
+      <Link to="/"><h2>This is Header for {showUser}</h2></Link>
       {
         user && user.uid ?
           <button onClick={handleLogOut}>Sign Out</button>
