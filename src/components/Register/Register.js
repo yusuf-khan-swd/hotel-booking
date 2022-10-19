@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Register = () => {
@@ -27,6 +28,7 @@ const Register = () => {
         console.log(user);
         setSuccess("Register is success.");
         setError("");
+        toast.success('Registration is Success!');
         form.reset();
       })
       .catch((error) => {
