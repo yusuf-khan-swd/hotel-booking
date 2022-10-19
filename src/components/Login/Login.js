@@ -74,7 +74,7 @@ const Login = () => {
         </div>
         <div className="text-center mb-3">
           <h1 className="text-lg font-bold">OR</h1>
-          <h1 className="text-xl font-bold">Register now!</h1>
+          <h1 className="text-xl font-bold">Login Now!</h1>
         </div>
         <form
           onSubmit={handleSubmit}
