@@ -6,6 +6,8 @@
 .pnp.js
 
 .vscode
+.firebase
+.firebaserc
 
 # testing
 /coverage
