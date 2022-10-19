@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Room = ({ room }) => {
-  const { title, bed, person, price } = room;
+  const { id, title, bed, person, price } = room;
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl ">
       <figure><img src="https://placeimg.com/400/225/arch" alt="hotel" /></figure>
@@ -11,7 +12,9 @@ const Room = ({ room }) => {
         <p>Bed: {bed} </p>
         <p>Person: {person} </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Book Now</button>
+          <Link to={`/room/${id}`}>
+            <button className="btn btn-primary">Book Now</button>
+          </Link>
         </div>
       </div>
     </div>
