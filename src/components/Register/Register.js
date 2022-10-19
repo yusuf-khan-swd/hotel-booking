@@ -107,7 +107,7 @@ const Register = () => {
                     <span className="text-green-500 mr-2">
                       {success}
                     </span>
-                    <Link className="link link-hover">
+                    <Link to='/login' className="link link-hover">
                       Please Login
                     </Link>
                   </p>
