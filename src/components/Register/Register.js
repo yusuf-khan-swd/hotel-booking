@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+
   const { createUser, googleSignIn } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
@@ -44,6 +46,7 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         toast.success('Success');
+        navigate('/');
       })
       .catch(error => {
         console.error('error: ', error)
@@ -53,85 +56,84 @@ const Register = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="form-control mt-6">
-        <p onClick={handleGoogleSignIn} className="btn btn-primary">Continue With Google</p>
-      </div>
-      <div className="hero min-h-screen lg:min-h-min bg-base-200">
-        <div className="hero-content flex-col">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-          </div>
-          <form onSubmit={handleSubmit} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="name"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Confirm Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="confirm"
-                  placeholder="confirm password"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
-              </div>
-              <p className="mb-2">
-                Already have an Account?
-                <Link to="/login" className="link link-hover ml-2">
+    <div className="container mx-auto lg:mb-24">
+      <div className="min-h-screen max-w-4xl mx-auto bg-base-200 pb-4 lg:pb-28">
+        <div className="form-control mt-6">
+          <p onClick={handleGoogleSignIn} className="btn btn-primary">Continue With Google</p>
+        </div>
+        <div className="text-center mb-3">
+          <h1 className="text-lg font-bold">OR</h1>
+          <h1 className="text-xl font-bold">Register now!</h1>
+        </div>
+        <form onSubmit={handleSubmit} className="card mx-auto flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
+          <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="name"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                name="confirm"
+                placeholder="confirm password"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn btn-primary">Register</button>
+            </div>
+            <p className="mb-2">
+              Already have an Account?
+              <Link to="/login" className="link link-hover ml-2">
+                Please Login
+              </Link>
+            </p>
+            {error && <p className="text-red-500 text-center">{error}</p>}
+            {success && (
+              <p className="text-center">
+                <span className="text-green-500 mr-2">{success}</span>
+                <Link to="/login" className="link link-hover">
                   Please Login
                 </Link>
               </p>
-              {error && <p className="text-red-500 text-center">{error}</p>}
-              {success && (
-                <p className="text-center">
-                  <span className="text-green-500 mr-2">{success}</span>
-                  <Link to="/login" className="link link-hover">
-                    Please Login
-                  </Link>
-                </p>
-              )}
-            </div>
-          </form>
-        </div>
+            )}
+          </div>
+        </form>
       </div>
     </div>
   );
