@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Login = () => {
@@ -7,7 +8,7 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const { logIn } = useContext(AuthContext);
+  const { logIn, forgotPassword } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,6 +38,15 @@ const Login = () => {
     const email = form.email.value;
     console.log(email);
 
+    forgotPassword(email)
+      .then(() => {
+        toast.success('Password reset email sent!');
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('error: ', error);
+        toast.error(error.message);
+      })
 
   };
 
