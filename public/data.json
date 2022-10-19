@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Single",
+    "bed": 1,
+    "person": 1,
+    "price": 129
+  },
+  {
+    "id": 2,
+    "title": "Double",
+    "bed": 1,
+    "person": 2,
+    "price": 159
+  },
+  {
+    "id": 3,
+    "title": "Family",
+    "bed": 2,
+    "person": 4,
+    "price": 229
+  }
+]
