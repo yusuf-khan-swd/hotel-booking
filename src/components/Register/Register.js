@@ -8,16 +8,17 @@ const Register = () => {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, setUserProfile, googleSignIn } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirm = form.confirm.value;
-    console.log(name, email, password, confirm);
+    console.log(name, photoURL, email, password, confirm);
 
     if (password !== confirm) {
       setSuccess("");
@@ -27,6 +28,9 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        setUserProfile(name, photoURL)
+          .then(() => { })
+          .catch((e) => console.error(e))
         console.log(user);
         setSuccess("Register is success.");
         setError("");
@@ -75,6 +79,17 @@ const Register = () => {
                 type="text"
                 name="name"
                 placeholder="name"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+                type="text"
+                name="photoURL"
+                placeholder="photoURL"
                 className="input input-bordered"
               />
             </div>
